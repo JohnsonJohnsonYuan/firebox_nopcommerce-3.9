@@ -1,0 +1,71 @@
+/* lg */ 
+@media (min-width: 1200px) {
+ /* Make Navigation Toggle on Desktop Hover */
+  .dropdown:hover .dropdown-menu {
+      display: block;
+      -webkit-animation: fadeInUp 400ms;
+      animation: fadeInUp 400ms;
+  }
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+  
+ /* Make Navigation Toggle on Desktop Hover */
+  .dropdown:hover .dropdown-menu {
+      display: block;
+      -webkit-animation: fadeInUp 400ms;
+      animation: fadeInUp 400ms;
+  }
+
+  .navbar-nav > li {
+    margin-left: 10px;
+  }
+
+  .navbar-collapse {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Make Navigation Toggle on Desktop Hover */
+  .dropdown:hover .dropdown-menu {
+      display: block;
+      -webkit-animation: fadeInUp 400ms;
+      animation: fadeInUp 400ms;
+  }
+
+  .navbar-collapse {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-nav > li {
+    margin-left: 0;
+  }
+}
+
+/* xs */
+@media (max-width: 767px) {
+  .container > .navbar-header, .container > .navbar-collapse{
+    margin-left: 0;
+  }
+
+  input.search-form:hover {
+    width: 120px;
+  }
+
+  .navbar-nav > li {
+    padding-bottom: 0;
+  }
+}
+
+/* XS Portrait */
+@media (max-width: 480px) {
+
+
+}
+
