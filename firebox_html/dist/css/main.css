@@ -25447,7 +25447,8 @@ body.xp266 .app-header__desktop-search-input {
 	position: absolute;
 	background-color: #e2e2e2;
 	top: 0;
-	left: 100%
+	left: 100%;
+    z-index: 1;
 }
 
 .mobile-menu__secondary--active {

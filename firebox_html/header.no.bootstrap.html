@@ -10,13 +10,13 @@
 
     <!--ICONS-->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../media/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../media/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="../media/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="../media/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="../media/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon" href="../media/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="i/media/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="i/media/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="i/media/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="i/media/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="i/media/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="i/media/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" href="i/media/apple-touch-icon.png" />
     <!--/ICONS-->
     <!--my STYLES-->
     <!--STYLES-->
@@ -188,7 +188,7 @@
                 <!--/导航-->
                 <div class="app-header__top-bar__mobile">
                     <div style="top:50px;" class="mobile-menu">
-                        <ul class="mobile-menu__primary sublist">
+                        <ul class="mobile-menu__primary sublist" data-level="primary">
                             <li>
                                 <a class="mobile-menu__item" href="/whatsnew?via=catbar" alt="New" title="New" data-reactid=".zm0dx8joqo.5.0.0.0:$0"><span data-reactid=".zm0dx8joqo.5.0.0.0:$0.0">New</span><span data-reactid=".zm0dx8joqo.5.0.0.0:$0.1"> </span></a>
                             </li>
@@ -196,12 +196,12 @@
                                 <a class="mobile-menu__item" href="/chart?via=catbar" alt="Top 50" title="Top 50" data-reactid=".zm0dx8joqo.5.0.0.0:$1"><span data-reactid=".zm0dx8joqo.5.0.0.0:$1.0">Top 50</span><span data-reactid=".zm0dx8joqo.5.0.0.0:$1.1"> </span></a>
                             </li>
                             <li>
-                                <a class="mobile-menu__item" data-sublist="true" alt="Categories" title="Categories">
+                                <a class="mobile-menu__item" data-sublist="true" data-level="primary" alt="Categories" title="Categories">
                                     <span>Categories</span>
                                     <span> </span>
                                     <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
                                 </a>
-                                <ul class="mobile-menu__secondary mobile-menu__secondary--active sublist">
+                                <ul class="mobile-menu__secondary sublist" data-level="secondary">
                                     <li>
                                         <a class="mobile-menu__item" href="/login?via=catbar" alt="Home &amp; Lifestyle" title="Sign in">
                                             <span>Sign in</span><span> </span>
@@ -219,12 +219,13 @@
                                     </li>
                                     <!--has sub items-->
                                     <li>
-                                        <a class="mobile-menu__item" data-sublist="true" alt="Clothing &amp; Accessories" title="Change currency">
+                                        <a class="mobile-menu__item" data-sublist="true" data-level="secondary" alt="Clothing &amp; Accessories" title="Change currency">
                                             <span>Change currency</span><span> </span>
                                             <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
                                         </a>
                                         <!--has sub sub items-->
-                                        <ul class="mobile-menu__tertiary mobile-menu__tertiary--active sublist">
+                                        <!-- active: mobile-menu__tertiary--active-->
+                                        <ul class="mobile-menu__tertiary sublist" data-level="tertiary">
                                             <li>
                                                 <a class="mobile-menu__item" href="/?via=catbar" alt="Set to GBP £" title="Set to GBP £">
                                                     <span>Set to GBP £</span><span> </span>
@@ -271,8 +272,21 @@
                 $('.app-header__top-bar__mobile').toggle();
             });
             $('.app-header__top-bar__mobile .mobile-menu__item[data-sublist="true"]').click(function () {
-                $(this).siblings('.sublist').animate({left:"20%"});;
-                //$(this).siblings('.sublist').toggle();
+                var sublist = $(this).siblings('.sublist');
+                var subClassName = 'mobile-menu__' + sublist.attr('data-level') + '--active';
+                var activeClassName = 'mobile-menu__item--active-' + $(this).attr('data-level');
+
+                if (!sublist.hasClass(subClassName)) {
+                    // show this
+                    sublist.addClass(subClassName);
+                    $(this).addClass(activeClassName);
+                } else {
+                    // hide this
+                    sublist.removeClass(subClassName);
+                    $(this).removeClass(activeClassName);
+                }
+
+                return false;
             });
         });
     </script>
