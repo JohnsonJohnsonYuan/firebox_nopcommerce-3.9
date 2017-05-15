@@ -106,26 +106,7 @@
                                             <li><a href="#">Another action</a></li>
                                             <li><a href="#">Something else here</a></li>
                                         </ul>
-                                        <!--二級分類 : "動態加載一級分類下面類別" -->
-                                        <!-- <ul class="header-dropdown-menu__beta-list header-dropdown-menu__beta-list--active"> -->
-                                        <!-- <li> -->
-                                        <!-- <a href="home-and-lifestyle/kitchen-accessories/t188729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Kitchen Accessories</a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                        <!-- <a href="home-and-lifestyle/cooking-and-baking/t198729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Cooking &amp; Baking</a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                        <!-- <a href="home-and-lifestyle/barware/t208729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Barware</a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                        <!-- <a href="home-and-lifestyle/cups-mugs-and-glasses/t218729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Cups, Mugs &amp; Glasses</a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                        <!-- <a href="home-and-lifestyle/lighting/t238729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Lighting</a> -->
-                                        <!-- </li> -->
-                                        <!-- </ul> -->
                                     </li>
-                                    
                                     <li>
                                         <a href="gadgets/t368729.html?via=catbar" title="Gadgets" alt="Gadgets"><span>Gadgets</span><span> </span><span class="header-dropdown-menu__icon">
                                         </a>
@@ -177,84 +158,38 @@
                     <!--右侧导航 登陆 搜索-->
                     <div class="app-header__top-bar-right">
                         <div class="app-header__desktop-links">
-                            <a class="app-header__desktop-link app-header__desktop-link--compressed" href="login.html">Sign in</a>
-                            <div class="app-header__desktop-link ">
+                            <a class="app-header__desktop-link" href="login.html">Sign in</a>
+                            <div class="app-header__desktop-link help">
                                 <span>Help </span>
                                 <span class="app-header__arrow"><i class="btr bt-angle-down"></i></span>
+                                <!--Help dropdown--black-tie.min.css -->
+                                <div class="app-header__desktop-user-menu">
+                                    <div class="header-dropdown-menu header-dropdown-menu--new">
+                                        <div class="header-dropdown-menu__alpha-list">
+                                            <div class="header-dropdown-menu__item header-dropdown-menu__item--no-padding">
+                                                <div class="header-dropdown-menu__currency  header-dropdown-menu__currency--active">GBP £</div>
+                                                <div class="header-dropdown-menu__currency">EUR €</div>
+                                                <div class="header-dropdown-menu__currency">USD $</div>
+                                            </div>
+                                            <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="order-tracking.html">Track your order</a>
+                                            <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="admin/faqs.html">Contact us / FAQs</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/Help dropdown-->
                             </div>
                         </div>
                         <!--搜索-->
-                        <a class="app-header__mobile-search-icon-xp " href="#"><i class="btl bt-search  app-header__mobile-search-icon-inside"></i></a>
+                        <form class="app-header__desktop-search" action="/search/" method="post">
+                            <input class="app-header__desktop-search-input" autocomplete="off" placeholder="Search me" value="" type="text">
+                        </form>
+                        <a class="app-header__mobile-search-icon-xp" href="#"><i class="btl bt-search  app-header__mobile-search-icon-inside"></i></a>
                         <!--購物車-->
-                        <a class="app-header__basket " href="checkout/basket.html"><img class="app-header__basket-image" src="../media.firebox.com/i/basket_icon_nav.png" /></a>
+                        <a class="app-header__basket " href="checkout/basket.html"><img class="app-header__basket-image" src="i/basket_icon_nav.png" /></a>
                     </div>
                     <!--/右侧导航 登陆 搜索-->
                 </div>
                 <!--/导航-->
-                <!--dropdown-->
-                <div class="app-header__desktop-menus">
-                    <!--Categories dropdown-->
-                    <div style="position:fixed;z-index:20;left:0;top:0;width:500px;display:none;">
-                        <div class="header-dropdown-menu">
-                            <!--一級分類 : "Home & lifestyle",  "Gaggets" -->
-                            <div class="header-dropdown-menu__alpha-list">
-                                <a href="home-and-lifestyle/t178729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--active" title="Home &amp; Lifestyle" alt="Home &amp; Lifestyle">
-                                    <span>Home &amp; Lifestyle</span><span> </span>
-                                    <span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span>
-                                </a>
-                                <a href="gadgets/t368729.html?via=catbar" class="header-dropdown-menu__item" title="Gadgets" alt="Gadgets"><span>Gadgets</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                                <a href="food-and-drink/t288729.html?via=catbar" class="header-dropdown-menu__item" title="Food &amp; Drink" alt="Food &amp; Drink"><span>Food &amp; Drink</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                                <a href="clothing-and-accessories/t478729.html?via=catbar" class="header-dropdown-menu__item" title="Clothing &amp; Accessories" alt="Clothing &amp; Accessories"><span>Clothing &amp; Accessories</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                                <a href="toys-and-games/t548729.html?via=catbar" class="header-dropdown-menu__item" title="Toys &amp; Games" alt="Toys &amp; Games"><span>Toys &amp; Games</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                            </div>
-                            <!--二級分類 : "動態加載一級分類下面類別" -->
-                            <div class="header-dropdown-menu__beta-list header-dropdown-menu__beta-list--active">
-                                <a href="home-and-lifestyle/kitchen-accessories/t188729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Kitchen Accessories</a>
-                                <a href="home-and-lifestyle/cooking-and-baking/t198729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Cooking &amp; Baking</a>
-                                <a href="home-and-lifestyle/barware/t208729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Barware</a>
-                                <a href="home-and-lifestyle/cups-mugs-and-glasses/t218729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Cups, Mugs &amp; Glasses</a>
-                                <a href="home-and-lifestyle/lighting/t238729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover">Lighting</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Categories dropdown-->
-                    <!--Gifts dropdown-->
-                    <div style="position:fixed;z-index:20;top:0;width:100%;display:none;">
-                        <div style="width:80%;margin:0 auto;" class="header-dropdown-menu">
-                            <div class="header-dropdown-menu__alpha-list">
-                                <a href="gifts/t88729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--active" title="Gifts" alt="Gifts">
-                                    <span>Gifts</span><span> </span>
-                                    <span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span>
-                                </a>
-                                <span class="header-dropdown-menu__item">
-                                    <span>By Recipient</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span>
-                                </span><span class="header-dropdown-menu__item"><span>Birthday Gifts</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></span><span class="header-dropdown-menu__item"><span>By Personality</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></span><span class="header-dropdown-menu__item"><span>By Occasion</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></span><span class="header-dropdown-menu__item"><span>Unusual Gifts</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></span><a href="personalised/t678729.html?via=catbar" class="header-dropdown-menu__item" title="Personalised Gifts" alt="Personalised Gifts"><span>Personalised Gifts</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a><span class="header-dropdown-menu__item"><span>Christmas Gifts</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></span><a href="giftfinder8729.html?via=catbar" class="header-dropdown-menu__item" title="Gift Finder" alt="Gift Finder"><span>Gift Finder</span><span> </span></a>
-                            </div>
-                            <div class="header-dropdown-menu__beta-list header-dropdown-menu__beta-list--active header-dropdown-menu__beta-list--mega-menu">
-                                <a href="gifts/gifts-for-him/t98729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover header-dropdown-menu__item--mega-menu">Gifts for Him</a>
-                                <a href="gifts/gifts-for-her/t108729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover header-dropdown-menu__item--mega-menu">Gifts for Her</a>
-                                <a href="gifts/gifts-for-kids/t118729.html?via=catbar" class="header-dropdown-menu__item header-dropdown-menu__item--dark-hover header-dropdown-menu__item--mega-menu">Gifts for Kids</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Gifts dropdown-->
-                </div>
-                <!--/dropdown-->
-                <!--Help dropdown--black-tie.min.css>
-                <div class="app-header__desktop-user-menu" style="left:-256px;display:none;">
-                    <div class="header-dropdown-menu header-dropdown-menu--new">
-                        <div class="header-dropdown-menu__alpha-list">
-                            <div class="header-dropdown-menu__item header-dropdown-menu__item--no-padding">
-                                <div class="header-dropdown-menu__currency  header-dropdown-menu__currency--active">GBP £</div>
-                                <div class="header-dropdown-menu__currency">EUR €</div>
-                                <div class="header-dropdown-menu__currency">USD $</div>
-                            </div>
-                            <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="order-tracking.html">Track your order</a>
-                            <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="admin/faqs.html">Contact us / FAQs</a>
-                        </div>
-                    </div>
-                </div>
-                <!--/Help dropdown-->
                 <div class="app-header__mobile-menu">
                     <div style="top:50px;" class="mobile-menu">
                         <div class="mobile-menu__primary">
@@ -285,7 +220,7 @@
 
 
     <!-- jQuery -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

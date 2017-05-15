@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 img,legend {
 	border: 0
@@ -25381,6 +25381,10 @@ body.xp266 .app-header__desktop-search-input {
 .app-header__mobile-menu {
 	width: 50px;
 	box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	-webkit-align-items: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -25426,7 +25430,7 @@ body.xp266 .app-header__desktop-search-input {
 	width: 100%;
 	z-index: 6;
 	font-size: 14px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	height: 90%
 }
 
