@@ -6422,23 +6422,7 @@ ul.social-media-links li:nth-child(5) {
 	}
 }
 
-.text-currency-0 {
-	display: inline
-}
-
-.on-currency-1 .text-currency-0,.text-currency-1,.text-currency-2 {
-	display: none
-}
-
-.on-currency-1 .text-currency-1 {
-	display: inline
-}
-
-.on-currency-1 .text-currency-2,.on-currency-2 .text-currency-0,.on-currency-2 .text-currency-1 {
-	display: none
-}
-
-.on-currency-2 .text-currency-2 {
+.text-currency {
 	display: inline
 }
 
@@ -25080,22 +25064,13 @@ body.xp266 .app-header__top-bar-left--active {
 	display: flex
 }
 
-@media (min-width:320px) {
 	.app-header__desktop-links {
 		display: none
 	}
-}
 
 @media (min-width:768px) {
 	.top-ten-item-image img {
 		max-width: 233px
-	}
-
-	.app-header__desktop-links {
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: -ms-flexbox;
-		display: flex
 	}
 }
 
