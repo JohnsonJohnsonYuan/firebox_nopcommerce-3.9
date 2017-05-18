@@ -57,7 +57,7 @@
 </head>
 <body class="template-main">
 
-    <header class="spacing">
+    <header class="">
         <div id="app-header">
             <div class="app-header">
                 <div class="app-header__spacer"></div>
@@ -302,7 +302,7 @@
         $(function () {
             $('.category-page__filter-small-nav').on('click', '.filter-small-nav__column', function () {
                 var action = $(this).attr('data-action');
-                $('.category-page__sort-small-menu ul').hide();
+                $('.category-page__sort-small-menu ul[data-action!="' + action + '"]').hide();
                 $('.category-page__sort-small-menu ul[data-action="' + action + '"]').toggle();
             });
         });
@@ -383,12 +383,19 @@
                                     <li data-filter=".Camping"><span>Camping</span></li>
                                     <li data-filter=".Home"><span>Home Decor</span></li>
                                 </ul>
+                                <ul>
+                                <li>Price</li>
+                                    <li class=""><span>under £20</span></li>
+                                    <li class="active"><span>£20 to £50</span></li>
+                                    <li class=""><span>£50 to £100</span></li>
+                                    <li class=""><span>over £100</span></li>
+                                </ul>
                                 <ul data-action="sortby">
                                     <li>Sort by</li>
-                                    <li class="active" data-sort-value="bestSelling">Best Selling</li>
-                                    <li data-sort-value="priceLtH">Price (low - high)</li>
-                                    <li data-sort-value="priceHtL">Price (high - low)</li>
-                                    <li data-sort-value="newest">Newest</li>
+                                    <li class="active" data-sort-opt="selling:desc">Best Selling</li>
+                                    <li data-sort="price:asc">Price (low - high)</li>
+                                    <li data-sort="price:desc">Price (high - low)</li>
+                                    <li data-sort="published-date:desc">Newest</li>
                                 </ul>
                             </div>
                         </div>
@@ -397,8 +404,8 @@
                     <!-- main content -->
                     <div class="category-page__grid  col-xs-12 col-md-9 ">
                         <div class="row">
-                            <div class="col-xs-6 col-sm-4 col-md-3" style="padding:8px;">
-                                <div class="product-block">
+                            <div class="item col-xs-6 col-sm-4 col-md-3 Cups" data-price="29.99" data-selling="10" data-published-date="2016-11-24" style="padding:8px;">
+                                <div class="product-block ">
                                     <img class="product-block__image"
                                          src="i/media/product/7491/column_grid_6/hatching-dragon-candle_696.jpg"
                                          title="Hatching Dragon Candle" alt="Hatching Dragon Candle" />
@@ -418,7 +425,7 @@
                                             <div class="product-block__product-text">
                                                 <div class="product-block__product-name">Hatching Dragon Candle</div>
                                                 <div class="product-block__product-price">
-                                                    <span class="text-currency">£29.99</span>
+                                                    <span class="text-currency">£29.99 (was £4.99)</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -426,7 +433,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-4 col-md-3" style="padding:8px;">
+                            <div class="item col-xs-6 col-sm-4 col-md-3 Lighting" data-price="24.99" data-selling="15" data-published-date="2016-10-24" style="padding:8px;">
                                 <div class="product-block">
                                     <img class="product-block__image"
                                          src="i/media/product/6974/column_grid_3/instagram-pixel-heart-print_3824.jpg"
@@ -450,7 +457,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-4 col-md-3" style="padding:8px;">
+                            <div class="item col-xs-6 col-sm-4 col-md-3 Cooking" data-price="35.78" data-selling="25" data-published-date="2016-11-02" style="padding:8px;">
                                 <div class="product-block">
                                     <img class="product-block__image"
                                          src="i/media/product/7270/column_grid_6/brain-specimen-coasters_2078.jpg"
@@ -461,7 +468,7 @@
                                             <div class="product-block__product-text">
                                                 <div class="product-block__product-name">Brain Specimen Coasters (Blade Runner Whiskey Glasses)</div>
                                                 <div class="product-block__product-price">
-                                                    <span class="text-currency">£24.99</span>
+                                                    <span class="text-currency">£35.78</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -486,38 +493,31 @@
     </div>
 
 
-    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-    <script type="text/javascript">
-        // external js: isotope.pkgd.js
-
-        // init Isotope
-        var $grid = $('.category-page__grid').isotope({
-            itemSelector: '.row>div',
-            layoutMode: 'fitRows',
-            /* use when sort */
-            getSortData: {
-                bestSelling: '.name',
-                priceLtH: '.symbol',
-                priveHtL: '.number parseInt',
-                neweset: '[data-category]',
-                weight: function (itemElem) {
-                    var weight = $(itemElem).find('.weight').text();
-                    return parseFloat(weight.replace(/[\(\)]/g, ''));
-                }
+    <script type="text/javascript" src="js/mixitup.min.js"></script>
+    <script>
+        var mixer = mixitup($('.category-page__grid .row'), {
+            animation: {
+                //enable: false,
+                effects: 'fade translateZ(-100px)'
+            },
+            selectors: {
+                target: '.item'
+            },
+            load: {
+                //filter: 'all',
+                //sort: 'published-date:desc name:asc'
             }
         });
 
         // bind filter button click
         $('.category-page__filter ul[data-action="filterby"]').on('click', 'li', function () {
             var filterValue = $(this).attr('data-filter');
-            // use filterFn if matches value
-            //filterValue = filterFns[filterValue] || filterValue;
-            $grid.isotope({ filter: filterValue });
+            //mixer.filter('.category-a');;
         });
+
         // bind sort button click
         $('.category-page__filter ul[data-action="sortby"]').on('click', 'li', function () {
-            var sortValue = $(this).attr('data-sort-value');
-            $grid.isotope({ sortBy: sortValue });
+            var sortValue = $(this).attr('data-sort');
         });
 
         // change is-checked class on buttons
@@ -528,6 +528,11 @@
                 $(this).addClass('active');
             });
         });
+
+        // load more function might use sort and filter API
+        // mixer.filter('.category-a')
+        // mixer.sort('price:desc')
+        //
     </script>
 
     <!--
