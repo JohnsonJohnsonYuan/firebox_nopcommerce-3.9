@@ -10,5 +10,6 @@ https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-src
 images loaded:
 https://imagesloaded.desandro.com/
 
-picture zoom:
+magnific-popup:
 http://dimsemenov.com/plugins/magnific-popup/
+doc: http://dimsemenov.com/plugins/magnific-popup/documentation.html
