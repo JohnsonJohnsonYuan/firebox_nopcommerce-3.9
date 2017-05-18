@@ -6,3 +6,9 @@ http://responsejs.com/#sets
 
 img srcset  attr:
 https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/
+
+images loaded:
+https://imagesloaded.desandro.com/
+
+picture zoom:
+http://dimsemenov.com/plugins/magnific-popup/
