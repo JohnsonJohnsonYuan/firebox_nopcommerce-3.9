@@ -13,3 +13,9 @@ https://imagesloaded.desandro.com/
 magnific-popup:
 http://dimsemenov.com/plugins/magnific-popup/
 doc: http://dimsemenov.com/plugins/magnific-popup/documentation.html
+
+mobile image slider:
+http://kenwheeler.github.io/slick/
+
+reference site:
+http://photovideo.fetchhost.com/vaio-fit-14-laptop-6

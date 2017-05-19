@@ -9366,6 +9366,7 @@ body.stop-scroll {
 
 .sku-radio-list input {
     margin-right: 10px;
+    vertical-align: middle;
 }
 
 .sku-radio-list__container {
@@ -9475,6 +9476,7 @@ body.stop-scroll {
     -webkit-align-self: center;
     -ms-flex-item-align: center;
     align-self: center;
+    line-height: 1;
 }
 
 .sku-radio-list__name {
@@ -9515,13 +9517,13 @@ body.stop-scroll {
 
     .sku-radio-list__price {
         margin-right: 0;
+        line-height: 1.2;
     }
 }
 
 .sku-radio-list__price-promotion {
     font-size: .8em;
     color: #797979;
-    line-height: 1.6;
 }
 
 .sku-dropdown {
