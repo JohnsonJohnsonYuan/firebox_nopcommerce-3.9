@@ -327,38 +327,20 @@
                             <div class="slick-initialized slick-slider">
                                 <button type="button" data-role="none" class="slick-arrow slick-prev" style="display: block;">
                                     Previous</button>
+
                                 <div class="slick-list">
-                                    <div class="slick-track" style="opacity: 1; transform: translate3d(0px, 0px, 0px);">
-                                        <div data-index="-1" class="slick-slide" style="width: 0px;">
-                                            <div style="touch-action: pan-y; -moz-user-select: none;">
-                                                <img src="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg" alt="Abashiri Blue Beer"
-                                                    title="Abashiri Blue Beer" style="transform: matrix(1,0,0,1,0,0);"></div>
-                                        </div>
-                                        <div data-index="0" class="slick-slide slick-active" tabindex="-1" style="outline: medium none;
-                                            width: 0px;">
-                                            <div style="touch-action: pan-y; -moz-user-select: none;">
-                                                <img src="i/media/product/6558/column_grid_8/abashiri-blue-beer_5992.jpg" alt="Abashiri Blue Beer"
-                                                    title="Abashiri Blue Beer" style="transform: matrix(1,0,0,1,0,0);"></div>
-                                        </div>
-                                        <div data-index="1" class="slick-slide" tabindex="-1" style="outline: medium none;
-                                            width: 0px;">
-                                            <div style="touch-action: pan-y; -moz-user-select: none;">
-                                                <img src="i/media/product/6558/extra1_column_grid_8/abashiri-blue-beer_5998.jpg"
-                                                    alt="Abashiri Blue Beer" title="Abashiri Blue Beer" style="transform: matrix(1,0,0,1,0,0);"></div>
-                                        </div>
-                                        <div data-index="2" class="slick-slide" tabindex="-1" style="outline: medium none;
-                                            width: 0px;">
-                                            <div style="touch-action: pan-y; -moz-user-select: none;">
-                                                <img src="i/media/product/6558/extra2_column_grid_8/abashiri-blue-beer_5999.jpg"
-                                                    alt="Abashiri Blue Beer" title="Abashiri Blue Beer" style="transform: matrix(1,0,0,1,0,0);"></div>
-                                        </div>
-                                        <div data-index="3" class="slick-slide slick-active" style="width: 0px;">
-                                            <div style="touch-action: pan-y; -moz-user-select: none;">
-                                                <img src="i/media/product/6558/column_grid_8/abashiri-blue-beer_5992.jpg" alt="Abashiri Blue Beer"
-                                                    title="Abashiri Blue Beer" style="transform: matrix(1,0,0,1,0,0);"></div>
-                                        </div>
-                                    </div>
+                                   <div class="slick-track">
+                                      <div data-index="-1">
+                                         
+                                            <img src="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg" alt="Hippo Bottle Opener " title="Hippo Bottle Opener " style="transform: matrix(1, 0, 0, 1, 0, 0);">
+                                         
+                                      </div>
+                                      <div data-index="1">
+                                         <img src="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg" alt="Hippo Bottle Opener " title="Hippo Bottle Opener " style="transform: matrix(1, 0, 0, 1, 0, 0);">
+                                      </div>
+                                   </div>
                                 </div>
+                                
                                 <button type="button" data-role="none" class="slick-arrow slick-next" style="display: block;">
                                     Next</button>
                                 <ul class="slick-dots" style="display: block;">
@@ -382,7 +364,8 @@
                             </div>
                         </div>
                         <!-- /mobile images -->
-                        <div class="tablet-up">
+                        <!-- desktop images-->
+                        <div class="tablet-up product-images-slides">
                             <div class="product-images">
                                 <div class="switch left" id="product-page-product-images-switch-left">
                                     <i class="btr bt-angle-left"></i>
@@ -419,6 +402,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /desktop images-->
                     </div>
                     <div class="intro">
                         <div class="intro__section">
@@ -1173,13 +1157,37 @@
     </div>
     <link rel="stylesheet" href="css/magnific-popup.css" />
     <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="css/slick/slick.css" />
+    <script type="text/javascript" src="js/slick/slick.min.js"></script>
+
+
+    <script type="text/javascript" src="js/slides/slides.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
-            //            $('.your-class').slick({
-            //                setting-name: setting-value
-            //            });
+            // slides
+            $('.image .product-images-slides').slides({
+                preload: false, // boolean, Set true to preload images in an image based slideshow
+                preloadImage: '/img/loading.gif',
+                container: 'product-images',
+                generateNextPrev: false,
+                next: '.switch.left',
+                prev: '.switch.left',
+                generatePagination: false,
+                paginationClass: 'product-image-thumbnail-component',
+                currentClass: 'active',
+                start: 1,
+                effect: 'fade',
+            });
+
+
+
+            //$('.image .tablet-up').slick({
+
+            //});
+
             $('.product-image-thumbnail-component div.product-image-thumbnail-component__container').magnificPopup(
             {
                 type: 'image',

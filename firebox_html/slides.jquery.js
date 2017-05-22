@@ -247,7 +247,9 @@
                         }, option.play);
                         // store play interval
                         elem.data('interval', playInterval);
-                    })
+                    }, option.pause);
+                    // store pause interval
+                    elem.data('pause', pauseTimeout);
                 } else {
                     // if no pause, just stop
                     stop();
@@ -283,6 +285,210 @@
                 // fix for ie
                 position: 'relative'
             });
+
+            // set css for slides
+            control.children().css({
+                position: 'absolute',
+                top: 0,
+                left: control.children().outerWidth(),
+                zIndex: 0,
+                display: 'none'
+            });
+
+            // set css for control div
+            control.css({
+                position: 'relative',
+                // size of control 3 x slide width
+                width: (width * 3),
+                // set height to slide height
+                height: height,
+                // center control to slide
+                left: -width
+            });
+
+            // show slides
+            $('.' + option.container, elem).css({
+                display: 'block'
+            });
+
+            // if autoHeight true, get and set height of first slide
+            if (option.autoHeight) {
+                control.children().css({
+                    height: 'auto'
+                });
+                control.animate({
+                    height: control.children(':eq(' + start + ')').outerHeight()
+                }, option.autoHeightSpeed);
+            }
+            
+            // checks if image is loaded
+            if (option.preload && control.find('img:eq(' + start + ')').length) {
+                // adds preload image
+                $('.' + option.container, elem).css({
+                    background: 'url(' + option.preloadImage + ') no-repeat 50% 50%'
+                });
+
+                // gets image src, with cache buster
+                var img = control.find('img:eq(' + start + ')').attr('src') + '?' + (new Date()).getTime();
+
+                // check if the image has a parent
+                if ($('img', elem).parent().attr('class') != 'slides_control') {
+                    // If image has parent, get tag name
+                    imageParent = control.children(':eq(0)')[0].tagName.toLowerCase();
+                } else {
+                    // Image doesn't have parent, use image tag name
+                    imageParent = control.find('img:eq(' + start + ')');
+                }
+
+                // checks if image is loaded
+                control.find('img:eq(' + start + ')').attr('src', img).load(function() {
+                    // once image is fully loaded, fade in
+                    control.find(imageParent + ':eq(' + start + ')').fadeIn(option.fadeSpeed, option.fadeEasing, function() {
+                        $(this).css({
+                            zIndex: 5
+                        });
+                        // removes preload image
+                        $('.' + option.container, elem).css({
+
+                            background: ''
+
+                        });
+
+                        // let the script know everything is loaded
+                        loaded = true;
+                        // call the loaded funciton
+                        option.slidesLoaded();
+                    });
+                    
+                });
+            } else {
+                // if no preloader fade in start slide
+                control.children(':eq(' + start + ')').fadeIn(option.fadeSpeed, option.fadeEasing, function(){
+                    // let the script know everything is loaded
+                    loaded = true;
+
+                    // call the loaded funciton
+                    option.slidesLoaded();
+                });
+            }
+
+            // click slide for next
+            if (option.bigTarget) {
+                // set cursor to pointer
+                control.children().css({
+                    cursor: 'pointer'
+                });
+                // click handler
+                control.children().click(function(){
+                    // animate to next on slide click
+                    animate('next', effect);
+                    return false;
+                }); 
+            }
+
+            // pause on mouseover
+            if (option.hoverPause && option.play) {
+                control.bind('mouseover', function() {
+                    //on mouse over stop
+                    stop();
+                })
+                control.bind('mouseleave', function() {
+                    //on mouse leave start pause timeout
+                    pause();
+                })
+            }
+
+            // generate next/prev buttons
+            if (option.generateNextPrev) {
+                $('.' + option.container, elem).after('<a href="#" class="'+ option.prev +'">Prev</a>');
+                $('.' + option.prev, elem).after('<a href="#" class="'+ option.next +'">Next</a>');
+            }
+
+            // next button
+            $('.' + option.next ,elem).click(functioN() {
+                e.preventDefault();
+                if (option.play) {
+                    pause();
+                }
+
+                animate('next', effect);
+            });
+
+            // previous button
+            $('.' + option.prev, elem).click(function(e){
+                e.preventDefault();
+                if (option.play) {
+                     pause();
+                }
+
+                animate('prev', effect);
+            });
+
+            // generate pagination
+            if (option.generatePagination) {
+                // create unordered list
+                if (option.prependPagination) {
+                    elem.prepend('<ul class='+ option.paginationClass +'></ul>');
+                } else {
+                    elem.append('<ul class='+ option.paginationClass +'></ul>');
+                }
+
+                // for each slide create a list item and link
+                control.children().each(function() {
+                    $('.' + option.paginationClass), elem).append('<li><a href="#'+ number +'">'+ (number+1) +'</a></li>');
+                    number++;
+                });
+            } else {
+                // if pagination exists, add href w/ value of item number to links
+                $('.' + option.paginationClass + ' li a', elem).each(function(){
+                    $(this).attr('href', '#' + number);
+                    number++;
+                });
+            }
+
+            // add current class to start slide pagination
+            $('.' + option.paginationClass + ' li:eq('+ start +')', elem).addClass(option.currentClass);
+
+            // click handling 
+            $('.' + option.paginationClass + ' li a', elem).click(function() {
+                // pause slideshow
+                if (option.play) {
+                     pause();
+                }
+                // get clicked, pass to animate function                    
+                clicked = $(this).attr('href').match('[^#/]+$');
+                // if current slide equals clicked, don't do anything
+                if (current != clicked) {
+                    animate('pagination', paginationEffect, clicked);
+                }
+            });
+
+            // click handling 
+            $('a.link', elem).click(function() {
+                // pause slideshow
+                if (option.play) {
+                    pause();
+                }
+                // get clicked, pass to animate function                    
+                clicked = $(this).attr('href').match('[^#/]+$') - 1;
+                // if current slide equals clicked, don't do anything
+                if (current != clicked) {
+                    animate('pagination', paginationEffect, clicked);
+                }
+
+                return false;
+            });
+
+            if (option.play) {
+                // set interval
+                playInterval = setInterval(function() {
+                    animate('next', effect);
+                }, option.play);
+
+                // store interval id
+                elem.data('interval', playInterval);
+            }
+
         });
     };
 
