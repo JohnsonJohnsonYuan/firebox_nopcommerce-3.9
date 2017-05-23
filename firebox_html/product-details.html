@@ -288,7 +288,8 @@
     -->
     <div id="app-container">
         <div class="product-full ">
-            <div class="fb-modal closed">
+            <!--<div class="fb-modal closed">-->
+            <div class="fb-modal">
                 <div class="fb-modal__overlay">
                 </div>
                 <div class="fb-modal__content">
@@ -299,10 +300,14 @@
                         <div class="fb-modal__right">
                             <i class="btr bt-angle-right"></i>
                         </div>
-                        <span></span>
+                        <!--<span></span>-->
+                        <img src="http://media.firebox.com/product/6970/column_grid_8/unicorn-tears-gin-liqueur_27064.jpg"
+                             style="margin:0 auto;display:block;" alt="Unicorn Tears Gin Liqueur"
+                             title="Unicorn Tears Gin Liqueur">
                     </div>
                     <div class="fb-modal__close">
-                        Close</div>
+                        Close
+                    </div>
                 </div>
             </div>
             <div class="top">
@@ -375,7 +380,7 @@
                                 </div>
                                 <div>
                                     <div class="product-full__main-image-outer-container">
-                                        <div class="product-full__main-image-inner-container" data-mfp-src-="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg"">
+                                        <div class="product-full__main-image-inner-container">
                                             <img src="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg" style="width: 100%;"
                                                 alt="Abashiri Blue Beer" title="Abashiri Blue Beer" />
                                         </div>
@@ -385,17 +390,17 @@
                             <div class="image-thumbnails-container">
                                 <div class="product-image-thumbnail-component wrap4">
                                     <div class="active">
-                                        <div class="product-image-thumbnail-component__container" data-mfp-src="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg">
+                                        <div class="product-image-thumbnail-component__container" data-zoom-image="i/media/product/7491/column_grid_8/hatching-dragon-candle_696.jpg">
                                             <img src="i/media/product/7491/column_grid_2/hatching-dragon-candle_696.jpg" alt="Abashiri Blue Beer"
                                                 title="Abashiri Blue Beer"></div>
                                     </div>
                                     <div class="">
-                                        <div class="product-image-thumbnail-component__container" data-mfp-src="i/media/product/7491/extra1_column_grid_8/hatching-dragon-candle_698.jpg">
+                                        <div class="product-image-thumbnail-component__container" data-zoom-image="i/media/product/7491/extra1_column_grid_8/hatching-dragon-candle_698.jpg">
                                             <img src="i/media/product/7491/extra1_column_grid_2/hatching-dragon-candle_698.jpg"
                                                 alt="Abashiri Blue Beer" title="Abashiri Blue Beer"></div>
                                     </div>
                                     <div>
-                                        <div class="product-image-thumbnail-component__container" data-mfp-src="i/media/product/7491/extra2_column_grid_8/hatching-dragon-candle_699.jpg">
+                                        <div class="product-image-thumbnail-component__container" data-zoom-image="i/media/product/7491/extra2_column_grid_8/hatching-dragon-candle_699.jpg">
                                             <img src="i/media/product/7491/extra2_column_grid_2/hatching-dragon-candle_699.jpg"
                                                 alt="Abashiri Blue Beer" title="Abashiri Blue Beer"></div>
                                     </div>
@@ -1162,53 +1167,40 @@
     <link rel="stylesheet" type="text/css" href="css/slick/slick.css" />
     <script type="text/javascript" src="js/slick/slick.min.js"></script>
 
-
     <script type="text/javascript" src="js/slides/slides.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             // slides
             $('.image .product-images-slides').slides({
-                preload: false, // boolean, Set true to preload images in an image based slideshow
-                preloadImage: '/img/loading.gif',
                 container: 'product-images',
+                controlClass: 'product-full__main-image-inner-container',
                 generateNextPrev: false,
-                next: '.switch.left',
-                prev: '.switch.left',
+                next: 'switch.right',
+                prev: 'switch.left',
                 generatePagination: false,
                 paginationClass: 'product-image-thumbnail-component',
                 currentClass: 'active',
                 start: 1,
                 effect: 'fade',
+                fullImgAttrName: 'data-zoom-image'
             });
-
-
 
             //$('.image .tablet-up').slick({
 
             //});
 
-            $('.product-image-thumbnail-component div.product-image-thumbnail-component__container').magnificPopup(
-            {
-                type: 'image',
-                removalDelay: 100,
-                gallery: {
-                    enabled: true,
-                    tPrev: '@T("Media.MagnificPopup.Previous")',
-                    tNext: '@T("Media.MagnificPopup.Next")',
-                    tCounter: '@T("Media.MagnificPopup.Counter")'
-                },
-                tClose: '@T("Media.MagnificPopup.Close")',
-                tLoading: '@T("Media.MagnificPopup.Loading")'
+            var items = [];
+            $('.product-image-thumbnail-component .product-image-thumbnail-component__container').each(function (index, element) {
+                items[index] = {
+                    src: $(this).attr('data-zoom-image')
+                };
             });
 
-            $('.product-full__main-image-outer-container').magnificPopup(
-            {
-                items: [
-                    {
-                        src: $('.product-full__main-image-outer-container').find('img').attr('src')
-                    }
-                ],
+            $('.product-full__main-image-outer-container').magnificPopup({
+                items: items,
+                index: Math.random(),
+                //index: $('.product-image-thumbnail-component').children('.active').index(),
                 //delegate: 'div',
                 type: 'image',
                 removalDelay: 100,
@@ -1216,7 +1208,7 @@
                     enabled: true,
                     tPrev: '@T("Media.MagnificPopup.Previous")',
                     tNext: '@T("Media.MagnificPopup.Next")',
-                    tCounter: '@T("Media.MagnificPopup.Counter")'
+                    tCounter: '@T("Media.MagnificPopup.Counter")',
                 },
                 tClose: '@T("Media.MagnificPopup.Close")',
                 tLoading: '@T("Media.MagnificPopup.Loading")'
