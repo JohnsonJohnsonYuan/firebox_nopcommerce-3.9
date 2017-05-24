@@ -130,7 +130,7 @@
 			}
 			
 			// next button
-			$('.' + option.next ,elem).click(function(e){
+			$('.' + option.next, elem).click(function(e){
 				animate('next');
 				return false;
 			});
@@ -169,6 +169,20 @@
 				}
 				return false;
 			});
+
+		    // click handling
+			if (option.bingMagnificPopup) {
+			    $('body').on('click', '.mfp-gallery .mfp-arrow-left', function () {
+			        animate('prev');
+			        return false;
+			    });
+
+			    $('body').on('click', '.mfp-gallery .mfp-arrow-right', function () {
+			        animate('next');
+			        return false;
+			    });
+			}
+
 		});
 	};
 	
@@ -178,6 +192,7 @@
 		generateNextPrev: false, // boolean, Auto generate next/prev buttons
 		next: 'next', // string, Class name for next button
 		prev: 'prev', // string, Class name for previous button
+		bingMagnificPopup: true, // boolean, Animate when magnific-popup prev/next event
 		pagination: true, // boolean, If you're not using pagination you can set to false, but don't have to
 		generatePagination: true, // boolean, Auto generate pagination
 		prependPagination: false, // boolean, prepend pagination
