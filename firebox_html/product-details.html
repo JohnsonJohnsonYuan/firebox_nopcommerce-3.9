@@ -501,6 +501,10 @@
                                     <div>
                                         <noscript>
                                         </noscript>
+                                        <div class="attached-label--new">
+                                            <i class="btr bt-check"></i>
+                                                Added to your <a class="attached-label__link" href="/checkout/basket">basket</a>
+                                        </div>
                                         <button class="alpha-button alpha-button--new">
                                             <img src="i/basket_icon_nav.png" width="16">
                                             <span>Add to basket</span>
@@ -1340,6 +1344,54 @@
             });
         });
     </script>
+
+
+    <div class="ReactModalPortal" style="display:none">
+        <div data-reactroot="" style="background-color: rgba(0, 0, 0, 0.5);"
+             class="ReactModal__Overlay ReactModal__Overlay--after-open overlay active">
+            <div class="ReactModal__Content ReactModal__Content--after-open" tabindex="-1" aria-label="Modal" style="position: relative; top: auto; left: auto; right: auto; bottom: auto; border: medium none; background: rgb(255, 255, 255) none repeat scroll 0% 0%; overflow: auto; border-radius: 4px; outline: medium none; padding: 0px;">
+                <!-- add complete  -->
+                <!-- <div class="basket-modal state--success">  -->
+                <div class="basket-modal state--loading">
+                    <!-- display when basket-modal state--success -->
+                    <a class="basket-modal__close">
+                        <i class="btr bt-times"></i>
+                    </a>
+                    <!--/ display when basket-modal state--success -->
+
+                    <div class="basket-modal-header">
+                        <div class="basket-modal-title basket-modal-title__loading">
+                            <div>
+                                <span class="basket-spinner basket-spinner--large"></span>
+                                <h4>Adding, please wait!!</h4>
+                            </div>
+                        </div>
+                        <div class="basket-modal-title basket-modal-title__success">
+                            <div>
+                                <a href="/checkout/basket" alt="View basket" title="View basket">
+                                    <img src="i/tick.png" class="basket-modal-title__icon" alt="Product added to basket" title="Product added to basket" width="60">
+                                    <h4>Added to basket!</h4>
+                                    <p>Unicorn Tears Gin Liqueur £39.99</p>
+                                </a>
+                            </div>
+                        </div>
+                        <img src="i/media/product/7491/column_grid_2/hatching-dragon-candle_696.jpg" class="basket-modal__mainurl" title="Unicorn Tears Gin Liqueur" alt="Unicorn Tears Gin Liqueur">
+                    </div>
+
+                    <!-- display when basket-modal state--success -->
+                    <div class="basket-modal-bottom">
+                        <a class="beta-button beta-button--tight-left">Continue Shopping</a>
+                        <a href="/checkout/basket" class="alpha-button alpha-button--secure">View basket</a>
+                    </div>
+                    <!-- /display when basket-modal state--success -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!--
     end content
     -->
