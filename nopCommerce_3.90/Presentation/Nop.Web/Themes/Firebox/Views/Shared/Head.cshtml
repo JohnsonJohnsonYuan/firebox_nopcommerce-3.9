@@ -1,0 +1,42 @@
+﻿@using Nop.Core;
+@using Nop.Core.Infrastructure
+@using Nop.Web.Framework.Themes
+@using Nop.Web.Framework.UI
+@{
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    var themeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+
+    //add browser specific CSS files
+    var browser = Request.Browser;
+    if (browser.Browser == "IE" && browser.MajorVersion == 9)
+    {
+        Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/ie9.css", themeName));
+    }
+
+    //add main CSS file
+    if (supportRtl)
+    {
+        Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/styles.rtl.css", themeName));
+    }
+    else
+    {
+        Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/styles.css", themeName));
+    }
+
+    //add jQuery UI css file
+    Html.AppendCssFileParts("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+
+
+    // shortcut icons
+    var iconsFolder = string.Format("~/Themes/{0}/Content/images/icons/", themeName);
+    Html.AddHeadCustomParts(string.Format("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"{0}{1}\" />", iconsFolder, "favicon.ico"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"{0}{1}\" />", iconsFolder, "favicon-16x16.png"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"{0}{1}\" />", iconsFolder, "favicon-32x32.png"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"{0}{1}\" />", iconsFolder, "favicon-96x96.png"));
+
+    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" href=\"{0}{1}\" />", iconsFolder, "apple-touch-icon.png"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"{0}{1}\" />", iconsFolder, "media/apple-touch-icon-72x72.png"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-114x114.png"));
+    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-144x144.png"));
+
+}

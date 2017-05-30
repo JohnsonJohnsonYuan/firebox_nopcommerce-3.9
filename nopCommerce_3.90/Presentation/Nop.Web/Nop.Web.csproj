@@ -973,6 +973,16 @@
     <Content Include="Scripts\public.onepagecheckout.js" />
     <Content Include="Scripts\public.common.js" />
     <Content Include="Themes\DefaultClean\Content\css\print.css" />
+    <Content Include="Themes\Firebox\Content\css\ie9.css" />
+    <Content Include="Themes\Firebox\Content\css\main.css" />
+    <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-114x114.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-144x144.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-72x72.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\favicon-16x16.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\favicon-32x32.png" />
+    <Content Include="Themes\Firebox\Content\images\icons\favicon-96x96.png" />
+    <Content Include="Themes\Firebox\preview.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1029,9 +1039,15 @@
     <Content Include="Views\Vendor\Info.cshtml" />
     <Content Include="Views\Common\Logo.cshtml" />
     <Content Include="Views\Customer\EmailRevalidation.cshtml" />
+    <Content Include="Themes\Firebox\theme.config" />
+    <Content Include="Themes\Firebox\Views\Shared\Head.cshtml" />
+    <Content Include="Themes\Firebox\Views\Web.config" />
+    <Content Include="Themes\Firebox\Views\Shared\_Root.cshtml" />
+    <Content Include="Themes\Firebox\Views\Shared\_Root.Head.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />
+    <Folder Include="Themes\Firebox\Content\css\black-tie\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj">
