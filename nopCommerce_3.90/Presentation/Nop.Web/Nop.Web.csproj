@@ -1045,6 +1045,8 @@
     <Content Include="Themes\Firebox\Views\Web.config" />
     <Content Include="Themes\Firebox\Views\Shared\_Root.cshtml" />
     <Content Include="Themes\Firebox\Views\Shared\_Root.Head.cshtml" />
+    <Content Include="Themes\Firebox\Views\Shared\Header.cshtml" />
+    <Content Include="Themes\Firebox\Views\Common\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />
