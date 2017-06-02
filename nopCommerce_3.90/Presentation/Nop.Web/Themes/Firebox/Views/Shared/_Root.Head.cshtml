@@ -35,7 +35,7 @@
     }
 }
 <!DOCTYPE html>
-<html@(this.ShouldUseRtlTheme() ? Html.Raw(" dir=\"rtl\"") : null) @Html.NopPageCssClasses()>
+<html@(this.ShouldUseRtlTheme() ? Html.Raw(" dir=\"rtl\"") : null)>
 <head>
     <title>@Html.NopTitle()</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -60,7 +60,7 @@
     }
     <!--Powered by nopCommerce - http://www.nopCommerce.com-->
 </head>
-<body>
+<body @Html.NopPageCssClasses()>
     @RenderBody()
     @Html.NopCssFiles(this.Url, ResourceLocation.Foot)
     @Html.NopScripts(this.Url, ResourceLocation.Foot)

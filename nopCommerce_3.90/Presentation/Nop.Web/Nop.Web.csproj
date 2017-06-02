@@ -973,8 +973,9 @@
     <Content Include="Scripts\public.onepagecheckout.js" />
     <Content Include="Scripts\public.common.js" />
     <Content Include="Themes\DefaultClean\Content\css\print.css" />
+    <Content Include="Themes\Firebox\Content\css\styles.css" />
     <Content Include="Themes\Firebox\Content\css\ie9.css" />
-    <Content Include="Themes\Firebox\Content\css\main.css" />
+    <Content Include="Themes\Firebox\Content\css\firebox.css" />
     <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-114x114.png" />
     <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-144x144.png" />
     <Content Include="Themes\Firebox\Content\images\icons\apple-touch-icon-72x72.png" />

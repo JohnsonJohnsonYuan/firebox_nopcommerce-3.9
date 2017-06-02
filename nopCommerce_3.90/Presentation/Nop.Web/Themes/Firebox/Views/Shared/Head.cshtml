@@ -14,6 +14,8 @@
     }
 
     //add main CSS file
+    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/firebox.css", themeName));
+    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/font-awesome-4.7.0/css/firebox.css", themeName));
     if (supportRtl)
     {
         Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/styles.rtl.css", themeName));
@@ -25,7 +27,6 @@
 
     //add jQuery UI css file
     Html.AppendCssFileParts("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
-
 
     // shortcut icons
     var iconsFolder = string.Format("~/Themes/{0}/Content/images/icons/", themeName);
@@ -39,4 +40,6 @@
     Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-114x114.png"));
     Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-144x144.png"));
 
+    // add <body> class
+    Html.AddPageCssClassParts("template-main");
 }
