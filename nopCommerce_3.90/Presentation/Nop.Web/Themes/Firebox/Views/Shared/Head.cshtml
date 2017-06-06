@@ -14,8 +14,9 @@
     }
 
     //add main CSS file
-    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/firebox.css", themeName));
-    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/font-awesome-4.7.0/css/firebox.css", themeName));
+    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/font-awesome-4.7.0/css/font-awesome.min.css", themeName));
+    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/black-tie/css/black-tie.min.css", themeName));
+
     if (supportRtl)
     {
         Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/styles.rtl.css", themeName));
@@ -25,20 +26,11 @@
         Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/styles.css", themeName));
     }
 
+    Html.AppendCssFileParts(string.Format("~/Themes/{0}/Content/css/firebox.css", themeName));
+
+
     //add jQuery UI css file
     Html.AppendCssFileParts("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
-
-    // shortcut icons
-    var iconsFolder = string.Format("~/Themes/{0}/Content/images/icons/", themeName);
-    Html.AddHeadCustomParts(string.Format("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"{0}{1}\" />", iconsFolder, "favicon.ico"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"{0}{1}\" />", iconsFolder, "favicon-16x16.png"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"{0}{1}\" />", iconsFolder, "favicon-32x32.png"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"{0}{1}\" />", iconsFolder, "favicon-96x96.png"));
-
-    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" href=\"{0}{1}\" />", iconsFolder, "apple-touch-icon.png"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"{0}{1}\" />", iconsFolder, "media/apple-touch-icon-72x72.png"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-114x114.png"));
-    Html.AddHeadCustomParts(string.Format("<link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"{0}{1}\" />", iconsFolder, "i/media/apple-touch-icon-144x144.png"));
 
     // add <body> class
     Html.AddPageCssClassParts("template-main");
