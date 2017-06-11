@@ -1,0 +1,2 @@
+-- "ShoppingCart.HeaderQuantity" should not be '({0})'
+update LocaleStringResource  set ResourceValue = '{0}' where id=5423

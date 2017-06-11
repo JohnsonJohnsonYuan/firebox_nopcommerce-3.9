@@ -1,258 +1,28 @@
-﻿<div class="header">
-    @Html.Widget("header")
-    <div class="header-upper">
-        <div class="header-selectors-wrapper">
-            @Html.Action("TaxTypeSelector", "Common")
-            @Html.Action("CurrencySelector", "Common")
-            @Html.Action("LanguageSelector", "Common")
-            @Html.Widget("header_selectors")
-        </div>
-        <div class="header-links-wrapper">
-            @Html.Action("HeaderLinks", "Common")
-            @Html.Action("FlyoutShoppingCart", "ShoppingCart")
-        </div>
-    </div>
-    <div class="header-lower">
-        <div class="header-logo">
-            @Html.Action("Logo", "Common")
-        </div>
-        <div class="search-box store-search-box">
-            @Html.Action("SearchBox", "Catalog")
-        </div>
-    </div>
-</div>
-
-<!-- firebox header -->
+﻿<!-- firebox header -->
 <header>
+    @Html.Widget("header")
     <div class="app-header">
         <div class="app-header__spacer"></div>
         <!--导航-->
-        <div class="app-header__top-bar ">
+        <div class="app-header__top-bar">
             <!--mobile-->
             <div class="app-header__mobile-menu">
                 <i class="btr bt-bars bt-lg"></i>
             </div>
             <!--左侧导航 新品 分类-->
             <div class="app-header__top-bar-left">
-                <a class="app-header__logo" href="index.html"><img src="firebox.png" /></a>
-                <ul class="app-header__desktop-links">
-                    <li>
-                        <a href="whatsnew.html" class="app-header__desktop-link" alt="New" title="New">New</a>
-                    </li>
-                    <li>
-                        <a href="Trending.html" class="app-header__desktop-link" alt="New" title="Trending">Trending</a>
-                    </li>
-                    <li>
-                        <a href="chart.html" class="app-header__desktop-link" alt="Top 50" title="Top 50">Top 50</a>
-                    </li>
-                    <li>
-                        <a class="app-header__desktop-link" alt="Categories" title="Categories">
-                            <span>Categories</span><span> </span>
-                            <span class="app-header__arrow">
-                                <i class="btr bt-angle-down"></i>
-                            </span>
-                        </a>
-
-                        <!--一級分類 : "Home & lifestyle",  "Gaggets" -->
-                        <ul class="sublist first-level">
-                            <li>
-                                <a href="#" title="Home &amp; Lifestyle" alt="Home &amp; Lifestyle">
-                                    <span>Home &amp; Lifestyle</span><span> </span>
-                                    <span class="header-dropdown-menu__icon">
-                                        <i class="btr bt-angle-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="sublist">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="gadgets/t368729.html?via=catbar" title="Gadgets" alt="Gadgets">
-                                    <span>Gadgets</span><span> </span><span class="header-dropdown-menu__icon">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="food-and-drink/t288729.html?via=catbar" title="Food &amp; Drink" alt="Food &amp; Drink"><span>Food &amp; Drink</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                            </li>
-                            <li>
-                                <a href="clothing-and-accessories/t478729.html?via=catbar" title="Clothing &amp; Accessories" alt="Clothing &amp; Accessories"><span>Clothing &amp; Accessories</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                            </li>
-                            <li>
-                                <a href="toys-and-games/t548729.html?via=catbar" title="Toys &amp; Games" alt="Toys &amp; Games"><span>Toys &amp; Games</span><span> </span><span class="header-dropdown-menu__icon"><i class="btr bt-angle-right"></i></span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="app-header__desktop-link" alt="Gifts" title="Gifts">
-                            <span>Gifts</span><span> </span>
-                            <span class="app-header__arrow">
-                                <i class="btr bt-angle-down"></i>
-                            </span>
-                        </a>
-                        <ul class="sublist first-level">
-                            <li>
-                                <a href="#">
-                                    <span>相机(4)</span><span> </span>
-                                    <span class="header-dropdown-menu__icon">
-                                        <i class="btr bt-angle-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="sublist ">
-                                    <li>
-                                        <a href="#">
-                                            组装机(测试三级菜单)(0)
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Hello world(4)</span><span> </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                @Html.Action("Logo", "Common")
+                @Html.Action("TopMenu", "Catalog")
             </div>
             <!--/左侧导航 新品 分类-->
             <!--右侧导航 登陆 搜索-->
             <div class="app-header__top-bar-right">
-                <div class="app-header__desktop-links">
-                    <a class="app-header__desktop-link" href="login.html">Sign in</a>
-                    <div class="app-header__desktop-link help">
-                        <span>Help </span>
-                        <span class="app-header__arrow"><i class="btr bt-angle-down"></i></span>
-                        <!--Help dropdown--black-tie.min.css -->
-                        <div class="app-header__desktop-user-menu">
-                            <div class="header-dropdown-menu header-dropdown-menu--new">
-                                <div class="header-dropdown-menu__alpha-list">
-                                    <div class="header-dropdown-menu__item header-dropdown-menu__item--no-padding">
-                                        <div class="header-dropdown-menu__currency  header-dropdown-menu__currency--active">GBP £</div>
-                                        <div class="header-dropdown-menu__currency">EUR €</div>
-                                        <div class="header-dropdown-menu__currency">USD $</div>
-                                    </div>
-                                    <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="order-tracking.html">Track your order</a>
-                                    <a class="header-dropdown-menu__item header-dropdown-menu__item--auto-hover" href="admin/faqs.html">Contact us / FAQs</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/Help dropdown-->
-                    </div>
-                </div>
-                <!--搜索-->
-                <form class="app-header__desktop-search" action="/search/" method="post">
-                    <input class="app-header__desktop-search-input" autocomplete="off" placeholder="Search me" value="" type="text">
-                </form>
-                <a class="app-header__mobile-search-icon-xp" href="#"><i class="btl bt-search  app-header__mobile-search-icon-inside"></i></a>
-                <!--購物車-->
-                <a class="app-header__basket " href="checkout/basket.html"><img class="app-header__basket-image" src="i/basket_icon_nav.png" /></a>
+                @Html.Action("HeaderLinks", "Common")
+                @*@Html.Action("FlyoutShoppingCart", "ShoppingCart")*@
             </div>
             <!--/右侧导航 登陆 搜索-->
         </div>
         <!--/导航-->
-        <div class="app-header__top-bar__mobile">
-            <div style="top:50px;" class="mobile-menu">
-                <ul class="mobile-menu__primary sublist" data-level="primary">
-                    <li>
-                        <a class="mobile-menu__item" href="/whatsnew?via=catbar" alt="New" title="New"><span>New</span><span> </span></a>
-                    </li>
-                    <li>
-                        <a class="mobile-menu__item" href="/chart?via=catbar" alt="Top 50" title="Top 50"><span>Top 50</span><span> </span></a>
-                    </li>
-                    <li>
-                        <a class="mobile-menu__item" data-sublist="true" data-level="primary" alt="Categories" title="Categories">
-                            <span>Categories</span>
-                            <span> </span>
-                            <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
-                        </a>
-                        <ul class="mobile-menu__secondary sublist" data-level="secondary">
-                            <li>
-                                <a class="mobile-menu__item" href="/login?via=catbar" alt="Home &amp; Lifestyle" title="Sign in">
-                                    <span>Sign in</span><span> </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="mobile-menu__item" href="/order-tracking?via=catbar" alt="Gadgets" title="Track my order">
-                                    <span>Track my order</span><span> </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="mobile-menu__item" href="/admin/faqs?via=catbar" alt="Food &amp; Drink" title="FAQs &amp; Contact us">
-                                    <span>FAQs &amp; Contact us</span><span> </span>
-                                </a>
-                            </li>
-                            <!--has sub items-->
-                            <li>
-                                <a class="mobile-menu__item" data-sublist="true" data-level="secondary" alt="Clothing &amp; Accessories" title="Change currency">
-                                    <span>Change currency</span><span> </span>
-                                    <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
-                                </a>
-                                <!--has sub sub items-->
-                                <!-- active: mobile-menu__tertiary--active-->
-                                <ul class="mobile-menu__tertiary sublist" data-level="tertiary">
-                                    <li>
-                                        <a class="mobile-menu__item" href="/?via=catbar" alt="Set to GBP £" title="Set to GBP £">
-                                            <span>Set to GBP £</span><span> </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="mobile-menu__item" href="/?via=catbar" alt="Set to EUR €" title="Set to EUR €">
-                                            <span>Set to EUR €</span><span> </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="mobile-menu__item" href="/?via=catbar" alt="Set to USD $" title="Set to USD $">
-                                            <span>Set to USD $</span><span> </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="mobile-menu__item" alt="Gifts" title="Gifts">
-                            <span>Gifts</span><span> </span>
-                            <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mobile-menu__item" alt="User Account &amp; Settings" title="User Account &amp; Settings">
-                            <span>User Account &amp; Settings</span>
-                            <span> </span>
-                            <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        
     </div>
-    </div>
-    <div id="user-settings-container"></div>
-    <div id="dev-settings-container"></div>
 </header>
-<script type="text/javascript">
-        $(document).ready(function () {
-            $('.app-header__mobile-menu').click(function () {
-                $('.app-header__top-bar__mobile').toggle();
-            });
-            $('.app-header__top-bar__mobile .mobile-menu__item[data-sublist="true"]').click(function () {
-                var sublist = $(this).siblings('.sublist');
-                var subClassName = 'mobile-menu__' + sublist.attr('data-level') + '--active';
-                var activeClassName = 'mobile-menu__item--active-' + $(this).attr('data-level');
-
-                if (!sublist.hasClass(subClassName)) {
-                    // show this
-                    sublist.addClass(subClassName);
-                    $(this).addClass(activeClassName);
-                } else {
-                    // hide this
-                    sublist.removeClass(subClassName);
-                    $(this).removeClass(activeClassName);
-                }
-
-                return false;
-            });
-        });
-</script>

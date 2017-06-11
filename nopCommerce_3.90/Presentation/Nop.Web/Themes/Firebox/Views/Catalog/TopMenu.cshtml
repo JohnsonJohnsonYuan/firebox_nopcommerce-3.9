@@ -1,0 +1,288 @@
+﻿@model TopMenuModel
+@using Nop.Web.Models.Catalog;
+
+@helper RenderCategoryLine(CategorySimpleModel category, int level, bool responsiveMobileMenu)
+{
+    <li>
+        @if (!responsiveMobileMenu)
+        {
+            <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })" title="@category.Name" alt="@category.Name">
+                <span>@category.Name</span><span> </span>
+                @if (category.NumberOfProducts.HasValue)
+                {
+                <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)
+                }
+                @{
+                    //subcategories
+                    var subCategories = responsiveMobileMenu ?
+                        //responsive (all categories)
+                        category.SubCategories :
+                        //standard design (only categories with "IncludeInTopMenu")
+                        category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+
+                    if (subCategories.Count > 0)
+                    {
+                        <span class="header-dropdown-menu__icon">
+                            <i class="btr bt-angle-right"></i>
+                        </span>
+                        <ul class="sublist">
+                            @foreach (var subCategory in subCategories)
+                            {
+                                @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
+                            }
+                        </ul>
+                    }
+                }
+            </a>
+        }
+        else
+        {
+            // mobile menu
+            <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })" title="@category.Name" class="mobile-menu__item" alt="@category.Name">
+                <span>@category.Name</span><span> </span>
+                @if (category.NumberOfProducts.HasValue)
+                {
+                <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)
+                }
+                @{
+                    //subcategories
+                    var subCategories = responsiveMobileMenu ?
+                        //responsive (all categories)
+                        category.SubCategories :
+                        //standard design (only categories with "IncludeInTopMenu")
+                        category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+
+                    var levelClass = "";
+                    var datalevel = "mobile-menu__";
+                    if (level == 1)
+                    {
+                        datalevel = "primary";
+                    }
+                    if (level == 2)
+                    {
+                        datalevel = "secondary";
+                    }
+                    else if (level == 3)
+                    {
+                        datalevel = "tertiary";
+                    }
+                    datalevel += levelClass;
+
+                    if (subCategories.Count > 0)
+                    {
+                        <span class="mobile-menu__icon">
+                            <i class="btr bt-angle-right"></i>
+                        </span>
+                        <ul class="@levelClass sublist" data-level="@datalevel">
+                            @foreach (var subCategory in subCategories)
+                            {
+                                @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
+                            }
+                        </ul>
+                    }
+                }
+            </a>
+        }
+    </li>
+}
+
+<ul class="app-header__desktop-links">
+    @Html.Widget("header_menu_before")
+    @if (Model.DisplayHomePageMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+    }
+    @{
+        var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+    }
+    <li>
+        <a class="app-header__desktop-link" title="@T("Categories")">
+            <span>@T("Categories")</span><span> </span>
+            <span class="app-header__arrow">
+                <i class="btr bt-angle-down"></i>
+            </span>
+        </a>
+        <!--一級分類 : "Home & lifestyle",  "Gaggets" -->
+        <ul class="sublist secondary">
+            @foreach (var category in rootCategories)
+            {
+                @RenderCategoryLine(category, 1, false)
+            }
+        </ul>
+    </li>
+    @foreach (var topic in Model.Topics)
+    {
+        <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })" class="app-header__desktop-link">@topic.Name</a></li>
+    }
+    @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("NewProducts")" class="app-header__desktop-link">@T("Products.NewProducts")</a></li>
+    }
+    @if (Model.DisplayProductSearchMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("ProductSearch")" class="app-header__desktop-link">@T("Search")</a></li>
+    }
+    @if (Model.DisplayCustomerInfoMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("CustomerInfo")" class="app-header__desktop-link">@T("Account.MyAccount")</a></li>
+    }
+    @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("Blog")" class="app-header__desktop-link">@T("Blog")</a></li>
+    }
+    @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("Boards")" class="app-header__desktop-link">@T("Forum.Forums")</a></li>
+    }
+    @if (Model.DisplayContactUsMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("ContactUs")" class="app-header__desktop-link">@T("ContactUs")</a></li>
+    }
+
+    @Html.Widget("header_menu_after")
+</ul>
+
+
+@{
+    var rootCategoriesResponsive = Model.Categories.ToList();
+    //name it "Categories" if we have only categories. Otherwise, "Menu"
+    <div class="app-header__top-bar__mobile">
+        <div style="top:50px;" class="mobile-menu">
+            <ul class="mobile-menu__primary sublist" data-level="primary">
+                @Html.Widget("mob_header_menu_before")
+                @if (Model.DisplayHomePageMenuItem)
+                {
+                    <li><a class="mobile-menu__item" href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+                }
+                <li>
+                    <a class="mobile-menu__item" title="@T("Categories")" alt="@T("Categories")">
+                        <span>@T("Categories")</span><span> </span>
+                        <span class="mobile-menu__icon">
+                            <i class="btr bt-angle-right"></i>
+                        </span>
+                    </a>
+                    <!--一級分類 : "Home & lifestyle",  "Gaggets" -->
+                    <ul class="mobile-menu__secondary sublist">
+                        @foreach (var category in rootCategoriesResponsive)
+                        {
+                            @RenderCategoryLine(category, 1, true)
+                        }
+                    </ul>
+                </li>
+                @foreach (var topic in Model.Topics)
+                {
+                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })" class="mobile-menu__item">@topic.Name</a></li>
+                }
+                @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("NewProducts")" class="mobile-menu__item">@T("Products.NewProducts")</a></li>
+                }
+                @if (Model.DisplayProductSearchMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("ProductSearch")" class="mobile-menu__item">@T("Search")</a></li>
+                }
+                @if (Model.DisplayCustomerInfoMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("CustomerInfo")" class="mobile-menu__item">@T("Account.MyAccount")</a></li>
+                }
+                @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("Blog")" class="mobile-menu__item">@T("Blog")</a></li>
+                }
+                @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("Boards")" class="mobile-menu__item">@T("Forum.Forums")</a></li>
+                }
+                @if (Model.DisplayContactUsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("ContactUs")" class="mobile-menu__item">@T("ContactUs")</a></li>
+                }
+                <li>
+                    <a class="mobile-menu__item" alt="User Account &amp; Settings" title="User Account &amp; Settings">
+                        <span>User Account &amp; Settings</span>
+                        <span> </span>
+                        <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
+                    </a>
+                    <ul class="mobile-menu__secondary sublist" data-level="secondary">
+                        <li>
+                            <a class="mobile-menu__item" href="/login?via=catbar" alt="Home &amp; Lifestyle" title="Sign in">
+                                <span>Sign in</span><span> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="mobile-menu__item" href="/order-tracking?via=catbar" alt="Gadgets" title="Track my order">
+                                <span>Track my order</span><span> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="mobile-menu__item" href="/admin/faqs?via=catbar" alt="Food &amp; Drink" title="FAQs &amp; Contact us">
+                                <span>FAQs &amp; Contact us</span><span> </span>
+                            </a>
+                        </li>
+                        <!--has sub items-->
+                        <li>
+                            <a class="mobile-menu__item" data-sublist="true" data-level="secondary" alt="Clothing &amp; Accessories" title="Change currency">
+                                <span>Change currency</span><span> </span>
+                                <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
+                            </a>
+                            <!--has sub sub items-->
+                            <!-- active: mobile-menu__tertiary--active-->
+                            <ul class="mobile-menu__tertiary sublist" data-level="tertiary">
+                                <li>
+                                    <a class="mobile-menu__item" href="/?via=catbar" alt="Set to GBP £" title="Set to GBP £">
+                                        <span>Set to GBP £</span><span> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu__item" href="/?via=catbar" alt="Set to EUR €" title="Set to EUR €">
+                                        <span>Set to EUR €</span><span> </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="mobile-menu__item" href="/?via=catbar" alt="Set to USD $" title="Set to USD $">
+                                        <span>Set to USD $</span><span> </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                @Html.Widget("mob_header_menu_after")
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('.app-header__mobile-menu').on('click', function () {
+                    $('.app-header__top-bar__mobile').toggle();
+                });
+
+                $('.app-header__top-bar__mobile .mobile-menu__item').click(function () {
+                    var sublist = $(this).siblings('.sublist');
+                    var subClassName = 'mobile-menu__' + sublist.attr('data-level') + '--active';
+                    var activeClassName = 'mobile-menu__item--active-' + $(this).attr('data-level');
+
+                    sublist.toggleClass(subClassName);
+                    $(this).toggleClass(activeClassName);
+
+                    return false;
+                });
+            });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.menu-toggle').click(function () {
+                $(this).siblings('.top-menu.mobile').slideToggle('slow');
+            });
+            $('.top-menu.mobile .sublist-toggle').click(function () {
+                $(this).siblings('.sublist').slideToggle('slow');
+            });
+        });
+    </script>
+}
+
+
+
+
