@@ -1,0 +1,18 @@
+﻿@model FaviconModel
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Common;
+@using Nop.Web.Framework.Themes;
+@{
+    var themeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+
+    // it faster not resolve Webhelper to get storelocation
+    var storeLocation = Model.FaviconUrl.Substring(0, Model.FaviconUrl.IndexOf("favicon"));
+    var iconsFolder = string.Format("{0}Themes/{1}/Content/images/icons/", storeLocation, themeName);
+}
+
+@*<link rel="icon" href="@Model.FaviconUrl" />*@
+<link rel="shortcut icon" href="@Model.FaviconUrl" />
+<link rel="apple-touch-icon" href="@string.Format("{0}{1}", iconsFolder, "apple-touch-icon.png")" />
+<link rel="apple-touch-icon" sizes="72x72"   href="@string.Format("{0}{1}", iconsFolder, "media/apple-touch-icon-72x72.png")" />
+<link rel="apple-touch-icon" sizes="114x114" href="@string.Format("{0}{1}", iconsFolder, "i/media/apple-touch-icon-114x114.png")" />
+<link rel="apple-touch-icon" sizes="144x144" href="@string.Format("{0}{1}", iconsFolder, "i/media/apple-touch-icon-144x144.png")" />

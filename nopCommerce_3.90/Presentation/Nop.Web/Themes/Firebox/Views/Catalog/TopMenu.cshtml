@@ -1,8 +1,32 @@
 ﻿@model TopMenuModel
 @using Nop.Web.Models.Catalog;
 
+@functions 
+{
+    public string GetLevelClassName(int level) { 
+        switch (level)
+        {
+            case 1:
+                return "primary";
+            case 2:
+                return "secondary";
+            case 3:
+                return "tertiary";
+            default:
+                return string.Empty;
+        }
+    }
+}
+
 @helper RenderCategoryLine(CategorySimpleModel category, int level, bool responsiveMobileMenu)
 {
+    //subcategories
+    var subCategories = responsiveMobileMenu ?
+        //responsive (all categories)
+        category.SubCategories :
+        //standard design (only categories with "IncludeInTopMenu")
+        category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+ 
     <li>
         @if (!responsiveMobileMenu)
         {
@@ -12,76 +36,53 @@
                 {
                 <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)
                 }
-                @{
-                    //subcategories
-                    var subCategories = responsiveMobileMenu ?
-                        //responsive (all categories)
-                        category.SubCategories :
-                        //standard design (only categories with "IncludeInTopMenu")
-                        category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
-
-                    if (subCategories.Count > 0)
-                    {
-                        <span class="header-dropdown-menu__icon">
-                            <i class="btr bt-angle-right"></i>
-                        </span>
-                        <ul class="sublist">
-                            @foreach (var subCategory in subCategories)
-                            {
-                                @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
-                            }
-                        </ul>
-                    }
+                @if (subCategories.Count > 0)
+                {
+                    <span class="header-dropdown-menu__icon">
+                        <i class="btr bt-angle-right"></i>
+                    </span>
                 }
             </a>
+            if (subCategories.Count > 0)
+            {
+                <ul class="sublist">
+                    @foreach (var subCategory in subCategories)
+                    {
+                        @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
+                    }
+                </ul>
+            }
         }
         else
         {
+            var levelClass = GetLevelClassName(level);
+
             // mobile menu
-            <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })" title="@category.Name" class="mobile-menu__item" alt="@category.Name">
+            <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })" title="@category.Name" class="mobile-menu__item" alt="@category.Name" data-level="@levelClass">
                 <span>@category.Name</span><span> </span>
                 @if (category.NumberOfProducts.HasValue)
                 {
                 <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)
                 }
-                @{
-                    //subcategories
-                    var subCategories = responsiveMobileMenu ?
-                        //responsive (all categories)
-                        category.SubCategories :
-                        //standard design (only categories with "IncludeInTopMenu")
-                        category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
-
-                    var levelClass = "";
-                    var datalevel = "mobile-menu__";
-                    if (level == 1)
-                    {
-                        datalevel = "primary";
-                    }
-                    if (level == 2)
-                    {
-                        datalevel = "secondary";
-                    }
-                    else if (level == 3)
-                    {
-                        datalevel = "tertiary";
-                    }
-                    datalevel += levelClass;
-
-                    if (subCategories.Count > 0)
-                    {
-                        <span class="mobile-menu__icon">
-                            <i class="btr bt-angle-right"></i>
-                        </span>
-                        <ul class="@levelClass sublist" data-level="@datalevel">
-                            @foreach (var subCategory in subCategories)
-                            {
-                                @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
-                            }
-                        </ul>
-                    }
+                @if (subCategories.Count > 0)
+                {
+                    <span class="mobile-menu__icon">
+                        <i class="btr bt-angle-right"></i>
+                    </span>
                 }
             </a>
+            if (subCategories.Count > 0)
+            {
+                // level should + 1
+                levelClass = GetLevelClassName(++level);
+
+                <ul class="sublist mobile-menu__@levelClass" data-level="@levelClass">
+                    @foreach (var subCategory in subCategories)
+                    {
+                        @RenderCategoryLine(subCategory, level, responsiveMobileMenu)
+                    }
+                </ul>
+            }
         }
     </li>
 }
@@ -155,17 +156,17 @@
                     <li><a class="mobile-menu__item" href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
                 }
                 <li>
-                    <a class="mobile-menu__item" title="@T("Categories")" alt="@T("Categories")">
+                    <a class="mobile-menu__item" title="@T("Categories")" alt="@T("Categories")" data-level="primary">
                         <span>@T("Categories")</span><span> </span>
                         <span class="mobile-menu__icon">
                             <i class="btr bt-angle-right"></i>
                         </span>
                     </a>
                     <!--一級分類 : "Home & lifestyle",  "Gaggets" -->
-                    <ul class="mobile-menu__secondary sublist">
+                    <ul class="mobile-menu__secondary sublist" data-level="secondary">
                         @foreach (var category in rootCategoriesResponsive)
                         {
-                            @RenderCategoryLine(category, 1, true)
+                            @RenderCategoryLine(category, 2, true)
                         }
                     </ul>
                 </li>
@@ -198,7 +199,7 @@
                     <li><a href="@Url.RouteUrl("ContactUs")" class="mobile-menu__item">@T("ContactUs")</a></li>
                 }
                 <li>
-                    <a class="mobile-menu__item" alt="User Account &amp; Settings" title="User Account &amp; Settings">
+                    <a class="mobile-menu__item" alt="User Account &amp; Settings" title="User Account &amp; Settings" data-level="primary">
                         <span>User Account &amp; Settings</span>
                         <span> </span>
                         <span class="mobile-menu__icon"><i class="btr bt-angle-right"></i></span>
@@ -253,31 +254,27 @@
     </div>
 
     <script type="text/javascript">
-            $(document).ready(function () {
-                $('.app-header__mobile-menu').on('click', function () {
-                    $('.app-header__top-bar__mobile').toggle();
-                });
-
-                $('.app-header__top-bar__mobile .mobile-menu__item').click(function () {
-                    var sublist = $(this).siblings('.sublist');
-                    var subClassName = 'mobile-menu__' + sublist.attr('data-level') + '--active';
-                    var activeClassName = 'mobile-menu__item--active-' + $(this).attr('data-level');
-
-                    sublist.toggleClass(subClassName);
-                    $(this).toggleClass(activeClassName);
-
-                    return false;
-                });
-            });
-    </script>
-
-    <script type="text/javascript">
         $(document).ready(function () {
-            $('.menu-toggle').click(function () {
-                $(this).siblings('.top-menu.mobile').slideToggle('slow');
+            $('.app-header__mobile-menu').on('click', function () {
+                $('.app-header__top-bar__mobile').toggle();
             });
-            $('.top-menu.mobile .sublist-toggle').click(function () {
-                $(this).siblings('.sublist').slideToggle('slow');
+
+            $('.app-header__top-bar__mobile .mobile-menu__item').click(function () {
+                var $this = $(this);
+                var sublist = $this.siblings('ul.sublist');
+                var subClassName = 'mobile-menu__' + sublist.attr('data-level') + '--active';
+                var activeClassName = 'mobile-menu__item--active-' + $this.attr('data-level');
+
+                // remove sibling class if 
+                if (!$this.hasClass(activeClassName)) {
+                    sublist.parent().siblings().children('ul.sublist').removeClass(subClassName);
+                    $(this).parent().siblings().children('a').removeClass(activeClassName);
+                }
+
+                sublist.toggleClass(subClassName);
+                $(this).toggleClass(activeClassName);
+
+                return false;
             });
         });
     </script>
