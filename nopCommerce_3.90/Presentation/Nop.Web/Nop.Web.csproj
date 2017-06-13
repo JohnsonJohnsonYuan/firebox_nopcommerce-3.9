@@ -1050,6 +1050,7 @@
     <Content Include="Themes\Firebox\Views\Common\Logo.cshtml" />
     <Content Include="Themes\Firebox\Views\Common\HeaderLinks.cshtml" />
     <Content Include="Themes\Firebox\Views\Catalog\TopMenu.cshtml" />
+    <Content Include="Themes\Firebox\Views\Common\Favicon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />
