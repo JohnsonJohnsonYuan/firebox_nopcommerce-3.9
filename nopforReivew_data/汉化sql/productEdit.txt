@@ -1,0 +1,7 @@
+商品编辑页面 这些都没有翻译
+admin.catalog.products.commoninfo 
+admin.catalog.products.inventory
+
+
+Admin.Catalog.Products.Fields.NotReturnable： 翻译错误
+Not returnable,未返回

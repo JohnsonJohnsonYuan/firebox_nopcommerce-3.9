@@ -1,0 +1,1 @@
+>msbuild Nop.Web.csproj /p:DeployOnBuild=true /p:PublishProfile=nop
